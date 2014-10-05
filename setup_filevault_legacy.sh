@@ -1,5 +1,7 @@
 #!/bin/sh
 
+D_R=`cd \`dirname $0\` ; pwd -P`
+
 umask 077
 export SBUSERNAME=`whoami`
 export SBUID=$(id -u $SBUSERNAME)
@@ -55,3 +57,12 @@ rsync -avxHE ./ sbdest/ \
 
 hdiutil detach sbdest || exit $?
 rmdir sbdest || exit $?
+
+USER_PLIST="/private/var/db/dslocal/nodes/Default/users/$SBUSERNAME.plist"
+sudo cp "$USER_PLIST" \
+  "$USER_PLIST.backup-`date "+%Y-%m-%d--%H-%M-%S"`" || exit $?
+sudo plutil -convert xml1 "$USER_PLIST" || exit $?
+cat $D_R/setup_filevault_legacy.diff | \
+  sed -e "s/SBUSERNAME/$SBUSERNAME/g" | \
+  sudo patch $USER_PLIST || exit $?
+sudo plutil -convert binary1 "$USER_PLIST" || exit $?

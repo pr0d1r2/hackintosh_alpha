@@ -1,0 +1,13 @@
+--- /Users/SBUSERNAME/Downloads/SBUSERNAME.plist	2014-10-05 12:20:25.000000000 +0200
++++ /Users/SBUSERNAME/Downloads/SBUSERNAME-patched.plist	2014-10-05 12:23:41.000000000 +0200
+@@ -92,6 +92,10 @@
+ 	<array>
+ 		<string>/Users/SBUSERNAME</string>
+ 	</array>
++	<key>home_loc</key>
++	<array>
++		<string>&lt;home_dir&gt;&lt;url&gt;file://localhost/Users/SBUSERNAME/SBUSERNAME.sparsebundle&lt;/url&gt;&lt;/home_dir&gt;</string>
++	</array>
+ 	<key>jpegphoto</key>
+ 	<array>
+ 		<data>
