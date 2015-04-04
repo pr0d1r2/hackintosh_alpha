@@ -33,6 +33,10 @@ esac
 
 cd $HOME
 
+echo
+echo "Please use same password as you have for login."
+echo
+
 if [ ! -f "$SBUSERNAME".sparsebundle ]; then
   hdiutil create \
     -size $VAULT_SIZE \
@@ -66,3 +70,12 @@ cat $D_R/setup_filevault_legacy.diff | \
   sed -e "s/SBUSERNAME/$SBUSERNAME/g" | \
   sudo patch $USER_PLIST || exit $?
 sudo plutil -convert binary1 "$USER_PLIST" || exit $?
+
+echo
+echo "Now:"
+echo "- log out"
+echo "- log in"
+echo "- log out"
+echo
+echo "If you see 'Recovering disk space ...' message you are done"
+echo
